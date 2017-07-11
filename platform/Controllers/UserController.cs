@@ -8,6 +8,7 @@ namespace platform.Controllers
 {
     public class UserController : Controller
     {
+       // private readonly IUserService _userService;
         // GET: User
         public ActionResult Index()
         {
