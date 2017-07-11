@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Data
 {
-  public partial interface IRespository<T> where T : BaseEntity
+  public partial interface IRepository<T> where T : BaseEntity
   {
     T GetById(object id);
 
@@ -14,9 +14,9 @@ namespace Core.Data
 
     void Insert(IEnumerable<T> entities);
 
-    T Update(T entity);
+    void Update(T entity);
 
-    T Update(IEnumerable<T> entities);
+    void Update(IEnumerable<T> entities);
 
     void Delete(T eneity);
 

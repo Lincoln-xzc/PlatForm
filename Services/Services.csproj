@@ -40,14 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISearchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\IUserService.cs" />
+    <Compile Include="Users\UserService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{d093eb82-a7c5-4201-a333-80fd0aa2262a}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{f242b3da-d0ab-4021-8ea5-7fd22e339405}</Project>
+      <Name>Data</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

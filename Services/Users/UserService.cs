@@ -14,9 +14,9 @@ namespace Services.Users
   public class UserService : IUserService, ISearchService<User>
   {
 
-    public readonly IRespository<User> _userReposity;
+    public readonly IRepository<User> _userReposity;
 
-    public UserService(IRespository<User> userReposity)
+    public UserService(IRepository<User> userReposity)
     {
       this._userReposity = userReposity;
     }
@@ -60,9 +60,12 @@ namespace Services.Users
       return _userReposity.Table.Where(filter).ToList();
     }
 
-    public User UpdateUser(User user)
+    public virtual void UpdateUser(User user)
     {
-      return _userReposity.Update(user);
+      if (user == null)
+        throw new ArgumentNullException("customer");
+
+       _userReposity.Update(user);
     }
   }
 }

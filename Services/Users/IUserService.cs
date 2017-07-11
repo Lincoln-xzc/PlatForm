@@ -12,7 +12,7 @@ namespace Services.Users
   {
     void InsertUser(User user);
 
-    User UpdateUser(User user);
+    void UpdateUser(User user);
 
     User GetById(Object Id);
 

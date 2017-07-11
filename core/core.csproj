@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
-    <Compile Include="Data\IRespository.cs" />
+    <Compile Include="Data\IRepository.cs" />
     <Compile Include="Entities\User\User.cs" />
     <Compile Include="PagedList.cs" />
     <Compile Include="IPagedList.cs" />
