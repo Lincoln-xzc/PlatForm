@@ -16,7 +16,7 @@ namespace platform.Controllers
 
     private readonly ISearchService<User> _searchService;
 
-    public UserController(IUserService userService)
+    public UserController(IUserService userService,ISearchService<User> searchService)
     {
       this._userService = userService;
 
@@ -25,17 +25,8 @@ namespace platform.Controllers
     // GET: User
     public ActionResult List()
     {
-<<<<<<< HEAD
       _userService.search();
       return View();
-=======
-       // private readonly IUserService _userService;
-        // GET: User
-        public ActionResult Index()
-        {
-            return View();
-        }
->>>>>>> 2a98a67d138f2a42f472dfeb95e87c416c5c96ad
     }
   }
 }
