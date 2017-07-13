@@ -11,7 +11,7 @@ using Data;
 
 namespace Services.Users
 {
-  public class UserService : IUserService, ISearchService<User>
+  public class UserService : IUserService
   {
 
     public readonly IRepository<User> _userReposity;
@@ -34,7 +34,7 @@ namespace Services.Users
         _userReposity.Delete(user);
     }
 
-    public User Get(Expression<Func<User, bool>> filter)
+    public User GetByCondition(Expression<Func<User, bool>> filter)
     {
       return _userReposity.Table.Where(filter).FirstOrDefault();
     }

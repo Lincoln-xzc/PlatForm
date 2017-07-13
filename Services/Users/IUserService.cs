@@ -1,4 +1,5 @@
-﻿using Core.Entities.User;
+﻿using Core;
+using Core.Entities.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,11 @@ namespace Services.Users
     void DeleteUser(User user);
 
     void DeleteById(Object Id);
+
+    List<User> Search(Expression<Func<User, bool>> filter);
+
+    User GetByCondition(Expression<Func<User, bool>> filter);
+
+    IPagedList<User> GetAllByPage(Expression<Func<User, bool>> filter, int pageIndex = 1, int pageSize = 10);
   }
 }
