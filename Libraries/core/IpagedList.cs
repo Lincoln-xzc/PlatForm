@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace core
+namespace Core
 {
-    public interface IPagedList<T>:IList<T>
-    {
-        int PageIndex { get; set; }
+  public interface IPagedList<T>:IList<T>
+  {
+    int PageIndex { get; set; }
 
-        int PageSize { get; }
+    int PageSize { get;  }
 
-        int TotalCount { get; }
+    int TotalCount { get;  }
 
-        int TotalPages { get; set; }
+    int TotalPages { get; set; }
 
-        bool HasPreviousPage { get; }
-
-        bool HasNextPage { get;}
-    }
+    bool HasPreviousPage { get; }
+    
+    bool HasNextPage { get; }
+  }
 }

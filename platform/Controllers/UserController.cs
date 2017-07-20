@@ -1,6 +1,5 @@
-﻿using Core.Entities.User;
-using Services;
-using Services.Users;
+﻿using Core.Entities;
+using Service.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,22 +10,19 @@ namespace platform.Controllers
 {
   public class UserController : Controller
   {
+    private readonly IUserService _userServcie;
 
-    private readonly IUserService _userService;
+   // private readonly ISearchServcie _searchService;
 
-    private readonly ISearchService<User> _searchService;
-
-    public UserController(IUserService userService,ISearchService<User> searchService)
+    public UserController(IUserService userService)
     {
-      this._userService = userService;
-
+      this._userServcie = userService;
     }
 
-    // GET: User
     public ActionResult List()
     {
-      _userService.search();
-      return View();
+      List<User> users = _userServcie.Search(c => !c.IsDel);
+      return View(users);
     }
   }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Data
 {
-  public partial interface IRepository<T> where T : BaseEntity
+  public partial interface IRepository<T> where T :BaseEntity
   {
     T GetById(object id);
 
@@ -25,7 +25,5 @@ namespace Core.Data
     IQueryable<T> Table { get; }
 
     IQueryable<T> TableNoTracking { get; }
-
-
   }
 }

@@ -10,9 +10,8 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-  public partial class EfRepository<T> : IRepository<T> where T : BaseEntity
+  public partial class EfRepository<T> : IRepository<T> where T :BaseEntity
   {
-
     private readonly IDbContext _context;
     private IDbSet<T> _entities;
 
@@ -58,7 +57,7 @@ namespace Data
 
     public void Delete(T entity)
     {
-       this.Entities.Remove(entity);
+      this.Entities.Remove(entity);
     }
 
     public void Delete(IEnumerable<T> entities)
@@ -73,7 +72,8 @@ namespace Data
 
         this._context.SaveChanges();
 
-      }catch(DbEntityValidationException dbEx)
+      }
+      catch (DbEntityValidationException dbEx)
       {
         throw new Exception(GetFullErrorText(dbEx), dbEx);
       }
@@ -125,7 +125,7 @@ namespace Data
       }
     }
 
-    public virtual void  Update(IEnumerable<T> entities)
+    public virtual void Update(IEnumerable<T> entities)
     {
       try
       {

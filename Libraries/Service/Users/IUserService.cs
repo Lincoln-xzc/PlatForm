@@ -1,5 +1,5 @@
 ﻿using Core;
-using Core.Entities.User;
+using Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Users
+namespace Service.Users
 {
   public interface IUserService
   {
@@ -15,15 +15,13 @@ namespace Services.Users
 
     void UpdateUser(User user);
 
-    User GetById(Object Id);
+    User GetById(Object id);
 
     void DeleteUser(User user);
 
-    void DeleteById(Object Id);
+    void DeleteById(Object id);
 
     List<User> Search(Expression<Func<User, bool>> filter);
-
-    User GetByCondition(Expression<Func<User, bool>> filter);
 
     IPagedList<User> GetAllByPage(Expression<Func<User, bool>> filter, int pageIndex = 1, int pageSize = int.MaxValue);
   }

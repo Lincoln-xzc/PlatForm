@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Entities.User
+namespace Core.Entities
 {
   [Table("t_User")]
   public class User :BaseEntity

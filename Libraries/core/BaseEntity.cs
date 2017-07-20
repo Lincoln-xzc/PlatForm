@@ -1,10 +1,15 @@
 ﻿using System;
-namespace core
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Core
 {
-    public class BaseEntity
-    {
-        public BaseEntity()
-        {
-        }
-    }
+  public abstract partial class BaseEntity
+  {
+    public int ID { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+  }
 }

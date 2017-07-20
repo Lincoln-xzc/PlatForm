@@ -4,11 +4,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Core.Entities.User;
+using Core;
+using Core.Entities;
 using Core.Data;
 using Data;
 
-namespace Services.Users
+namespace Service.Users
 {
   public class UserService : IUserService
   {
@@ -40,7 +41,7 @@ namespace Services.Users
 
     public IPagedList<User> GetAllByPage(Expression<Func<User, bool>> filter, int pageIndex = 1, int pageSize = int.MaxValue)
     {
-      return _userReposity.Table.Where(filter).ToPagedList(pageIndex,pageSize);
+      return _userReposity.Table.Where(filter).ToPagedList(pageIndex, pageSize);
     }
 
     public User GetById(Object Id)
@@ -50,8 +51,8 @@ namespace Services.Users
 
     public void InsertUser(User user)
     {
-      if(user !=null)
-       _userReposity.Insert(user);
+      if (user != null)
+        _userReposity.Insert(user);
     }
 
     public List<User> Search(Expression<Func<User, bool>> filter)
@@ -64,7 +65,7 @@ namespace Services.Users
       if (user == null)
         throw new ArgumentNullException("customer");
 
-       _userReposity.Update(user);
+      _userReposity.Update(user);
     }
   }
 }
