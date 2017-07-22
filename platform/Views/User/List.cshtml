@@ -2,6 +2,10 @@
 @{
     ViewBag.Title = "List";
 }
-
-<h2>List</h2>
+@using Core.Entities;
+@model List<User>
+@foreach(var user in Model)
+{
+  <span>@user.Name</span><br />
+}
 

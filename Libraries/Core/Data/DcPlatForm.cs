@@ -10,15 +10,15 @@ namespace Data
 {
   public partial class DcPlatForm : DbContext
   {
-    public DcPlatForm() : base("name=dbPlatForm")
-    {
+    //public DcPlatForm() : base("name=dbPlatForm")
+    //{
 
-    }
-    protected override void OnModelCreating(DbModelBuilder modelBuilder)
-    {
-      base.OnModelCreating(modelBuilder);
-    }
+    //}
+    //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    //{
+    //  base.OnModelCreating(modelBuilder);
+    //}
     
-    public DbSet<User> user { get; set; }
+    public DbSet<User> users { get; set; }
   }
 }

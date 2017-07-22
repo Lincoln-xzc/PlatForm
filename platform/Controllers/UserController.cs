@@ -1,4 +1,6 @@
-﻿using Core.Entities;
+﻿using Core.Abstract;
+using Core.Entities;
+using platform.Filters;
 using Service.Users;
 using System;
 using System.Collections.Generic;
@@ -10,19 +12,29 @@ namespace platform.Controllers
 {
   public class UserController : Controller
   {
-    private readonly IUserService _userServcie;
+    //private readonly IUserService _userServcie;
 
-   // private readonly ISearchServcie _searchService;
+    private IUserRepository _userRepository;
 
-    public UserController(IUserService userService)
+   // private readonly ISearchServcie _searchService; 
+    public UserController(IUserRepository userRepository)
     {
-      this._userServcie = userService;
+      this._userRepository = userRepository;
     }
 
     public ActionResult List()
     {
-      List<User> users = _userServcie.Search(c => !c.IsDel);
+      List<User> users = _userRepository.Users.ToList();
       return View(users);
+    }
+
+    [RangeException]
+    public string Detail(int id)
+    {
+      if (id > 100)
+        return String.Format("The id value is : {0}", id);
+      else
+        throw new ArgumentOutOfRangeException("id", id, "");
     }
   }
 }

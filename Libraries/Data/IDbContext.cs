@@ -3,59 +3,27 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Data
 {
-  public interface IDbContext
+  public interface IDbContext<T>
   {
-    IDbSet<TEntity> Set<TEntity>() where TEntity : BaseEntity;
+    
+    int Add(T model);
 
-    int SaveChanges();
+    IEnumerable<T> FindAll(Expression<Func<T, bool>> filter);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="TEntity"></typeparam>
-    /// <param name="commandText"></param>
-    /// <param name="parameters"></param>
-    /// <returns></returns>
-    IList<TEntity> ExecuteStoredProcudureList<TEntity>(string commandText, params object[] parameters);
+    //  IQueryable<T> FindAll(Expression<Func<T, bool>> filter);
+    T Find(Expression<Func<T, bool>> filter);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="TElement"></typeparam>
-    /// <param name="sql"></param>
-    /// <param name="paramters"></param>
-    /// <returns></returns>
-    IEnumerable<TElement> SqlQuery<TElement>(string sql, params object[] paramters);
+    void Update(T param);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="sql"></param>
-    /// <param name="doNotEnsureTransaction"></param>
-    /// <param name="timeout"></param>
-    /// <param name="parameters"></param>
-    /// <returns></returns>
-    int ExecuteSqlCommand(string sql, bool doNotEnsureTransaction = false, int? timeout = null, params object[] parameters);
+    void Delete(T param);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="entity"></param>
-    void Detach(object entity);
+    void Delete(Expression<Func<T, bool>> filter);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    bool ProxyCreationEnabled { get; set; }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    bool AutoDetectChangesEnabled { get; set; }
   }
 }
