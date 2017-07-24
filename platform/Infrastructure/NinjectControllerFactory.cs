@@ -1,6 +1,7 @@
-﻿using Core.Abstract;
-using Core.Concrete;
+﻿using Core.Data;
+using Data;
 using Ninject;
+using Service.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,11 @@ namespace platform.Infrastructure
 
     private void AddBindings()
     {
-      ninjectKernel.Bind<IUserRepository>().To<UserRepository>();
+     // ninjectKernel.Bind<IUserRepository>().To<UserRepository>();
+
+      ninjectKernel.Bind(typeof(IRepository<>)).To(typeof(EfRepository<>));
+
+      ninjectKernel.Bind<IUserService>().To<UserService>();
     }
   }
 }

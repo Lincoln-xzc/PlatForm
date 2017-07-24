@@ -50,11 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IUserRepository.cs" />
     <Compile Include="BaseEntity.cs" />
-    <Compile Include="Concrete\UserRepository.cs" />
+    <Compile Include="Data\DbContextFactory.cs" />
     <Compile Include="Data\DcPlatForm.cs" />
     <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\OrderItem.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="IPagedList.cs" />
     <Compile Include="PagedList.cs" />

@@ -7,17 +7,19 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace Data
 {
   public partial class EfRepository<T> : IRepository<T> where T :BaseEntity
   {
-    private readonly IDbContext _context;
+
+    private DbContext context;
     private IDbSet<T> _entities;
 
-    public EfRepository(IDbContext context)
+    public EfRepository()
     {
-      this._context = context;
+      this.context = DbContextFactory.GetCurrentDbContext();
     }
 
     protected string GetFullErrorText(DbEntityValidationException exc)
@@ -42,7 +44,7 @@ namespace Data
       get
       {
         if (_entities == null)
-          _entities = _context.Set<T>();
+          _entities = context.Set<T>();
         return _entities;
       }
     }
@@ -70,7 +72,7 @@ namespace Data
         foreach (var entity in entities)
           this.Entities.Remove(entity);
 
-        this._context.SaveChanges();
+        this.context.SaveChanges();
 
       }
       catch (DbEntityValidationException dbEx)
@@ -85,6 +87,7 @@ namespace Data
     {
       return this.Entities.Find(id);
     }
+
 
     public void Insert(T entity)
     {
@@ -101,7 +104,7 @@ namespace Data
         foreach (var entity in entities)
           this.Entities.Add(entity);
 
-        this._context.SaveChanges();
+        this.context.SaveChanges();
       }
       catch (DbEntityValidationException dbEx)
       {
@@ -116,7 +119,7 @@ namespace Data
         if (entity == null)
           throw new ArgumentNullException("entity");
 
-        this._context.SaveChanges();
+        this.context.SaveChanges();
 
       }
       catch (DbEntityValidationException dbEx)
@@ -132,13 +135,18 @@ namespace Data
         if (entities == null)
           throw new ArgumentNullException("entities");
 
-        this._context.SaveChanges();
+        this.context.SaveChanges();
 
       }
       catch (DbEntityValidationException dbEx)
       {
         throw new Exception(GetFullErrorText(dbEx), dbEx);
       }
+    }
+
+    public IList<T> GetByCondition(Expression<Func<T, bool>> filter)
+    {
+      return this.Entities.Where(filter).ToList();
     }
   }
 }

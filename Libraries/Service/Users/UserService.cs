@@ -39,9 +39,9 @@ namespace Service.Users
       return _userReposity.Table.Where(filter).FirstOrDefault();
     }
 
-    public IPagedList<User> GetAllByPage(Expression<Func<User, bool>> filter, int pageIndex = 1, int pageSize = int.MaxValue)
+    public IPagedList<User> GetAllByPage(Expression<Func<User, bool>> filter, int pageIndex, int pageSize)
     {
-      return _userReposity.Table.Where(filter).ToPagedList(pageIndex, pageSize);
+      return _userReposity.Table.Where(filter).OrderBy(c=>c.CreatedAt).ToPagedList(pageIndex, pageSize);
     }
 
     public User GetById(Object Id)
@@ -63,7 +63,7 @@ namespace Service.Users
     public virtual void UpdateUser(User user)
     {
       if (user == null)
-        throw new ArgumentNullException("customer");
+        throw new ArgumentNullException("User");
 
       _userReposity.Update(user);
     }

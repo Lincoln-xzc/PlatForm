@@ -23,6 +23,6 @@ namespace Service.Users
 
     List<User> Search(Expression<Func<User, bool>> filter);
 
-    IPagedList<User> GetAllByPage(Expression<Func<User, bool>> filter, int pageIndex = 1, int pageSize = int.MaxValue);
+    IPagedList<User> GetAllByPage(Expression<Func<User, bool>> filter, int pageIndex = 1, int pageSize =10);
   }
 }
