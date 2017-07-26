@@ -8,19 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
+using EntityFramework.Extensions;
 
 namespace Data
 {
   public partial class EfRepository<T> : IRepository<T> where T :BaseEntity
   {
 
-    private DbContext context;
+    private DcPlatForm context = new DcPlatForm();
     private IDbSet<T> _entities;
-
-    public EfRepository()
-    {
-      this.context = DbContextFactory.GetCurrentDbContext();
-    }
 
     protected string GetFullErrorText(DbEntityValidationException exc)
     {
@@ -144,9 +140,33 @@ namespace Data
       }
     }
 
-    public IList<T> GetByCondition(Expression<Func<T, bool>> filter)
+    public IQueryable<T> Filter(Expression<Func<T, bool>> filter)
     {
-      return this.Entities.Where(filter).ToList();
+      var dbSet = this.Entities.AsQueryable();
+      if(filter !=null)
+        dbSet = this.Entities.Where(filter);
+      return dbSet;
+    }
+
+    public void BatchAdd(T[] entities)
+    {
+      context.Set<T>().AddRange(entities);
+      this.context.SaveChanges();
+    }
+
+    public void Delete(Expression<Func<T, bool>> filter)
+    {
+      this.Entities.Where(filter).Delete();
+    }
+
+    public bool IsExist(Expression<Func<T, bool>> exp)
+    {
+      return this.Entities.Any(exp);
+    }
+
+    public void Update(Expression<Func<T, bool>> filter, Expression<Func<T, T>> entity)
+    {
+      this.Entities.Where(filter).Update(entity);
     }
   }
 }

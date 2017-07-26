@@ -12,9 +12,8 @@ namespace Data
   public partial class DcPlatForm : DbContext
   {
     public DcPlatForm() : base("name=dcPlatForm")
-    {
-
-    }
+    { }
+    
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
       base.OnModelCreating(modelBuilder);

@@ -11,22 +11,28 @@ namespace Core.Data
   {
     T GetById(object id);
 
-    IList<T> GetByCondition(Expression<Func<T, bool>> filter);
+    IQueryable<T> Filter(Expression<Func<T, bool>> filter);
 
     void Insert(T entity);
 
     void Insert(IEnumerable<T> entities);
 
+    void BatchAdd(T[] entities);
+
     void Update(T entity);
 
-    void Update(IEnumerable<T> entities);
+    void Update(Expression<Func<T, bool>> filter, Expression<Func<T, T>> entity);
 
     void Delete(T eneity);
 
-    void Delete(IEnumerable<T> entities);
+    void Delete(Expression<Func<T, bool>> filter);
 
     IQueryable<T> Table { get; }
 
     IQueryable<T> TableNoTracking { get; }
+
+    bool IsExist(Expression<Func<T, bool>> exp);
+
+
   }
 }
