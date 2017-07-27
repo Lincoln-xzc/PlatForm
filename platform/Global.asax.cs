@@ -9,6 +9,8 @@ using Core.Data;
 using System.Reflection;
 using Autofac.Integration.Mvc;
 using Service.Users;
+using platform.App_Start;
+using System.Web.Optimization;
 
 namespace platform
 {
@@ -19,6 +21,7 @@ namespace platform
       AreaRegistration.RegisterAllAreas();
       GlobalConfiguration.Configure(WebApiConfig.Register);
       RouteConfig.RegisterRoutes(RouteTable.Routes);
+      BundleConfig.RegisterBundles(BundleTable.Bundles);
 
       //设置controller工厂
       //  ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory());

@@ -64,6 +64,7 @@
     <Compile Include="Cache\ICacheContext.cs" />
     <Compile Include="Cache\ObjCacheProvider.cs" />
     <Compile Include="Cache\UserAuthSession.cs" />
+    <Compile Include="DataDiscts.cs" />
     <Compile Include="Data\DbContextFactory.cs" />
     <Compile Include="Data\DcPlatForm.cs" />
     <Compile Include="Data\IRepository.cs" />

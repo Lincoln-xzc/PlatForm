@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Autofac, Version=4.6.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.6.0\lib\net45\Autofac.dll</HintPath>
     </Reference>
@@ -49,6 +53,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web.Services" />
@@ -97,15 +104,15 @@
       <HintPath>..\packages\Mono.Security.3.2.3.0\lib\net45\Mono.Security.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\" />
-    <Folder Include="Models\" />
-    <Folder Include="Scripts\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -119,8 +126,365 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Infrastructure\AutoFaceControllerFactory.cs" />
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\about-us.css" />
+    <Content Include="Content\css\animate.css" />
+    <Content Include="Content\css\blog.css" />
+    <Content Include="Content\css\blue.css" />
+    <Content Include="Content\css\bootstrap-fileupload.css" />
+    <Content Include="Content\css\bootstrap-modal.css" />
+    <Content Include="Content\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\css\bootstrap-responsive1.min.css" />
+    <Content Include="Content\css\bootstrap-tag.css" />
+    <Content Include="Content\css\bootstrap-toggle-buttons.css" />
+    <Content Include="Content\css\bootstrap-tree.css" />
+    <Content Include="Content\css\bootstrap-wysihtml5.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\brown.css" />
+    <Content Include="Content\css\chosen.css" />
+    <Content Include="Content\css\clockface.css" />
+    <Content Include="Content\css\colorpicker.css" />
+    <Content Include="Content\css\coming-soon.css" />
+    <Content Include="Content\css\datepicker.css" />
+    <Content Include="Content\css\daterangepicker.css" />
+    <Content Include="Content\css\datetimepicker.css" />
+    <Content Include="Content\css\default.css" />
+    <Content Include="Content\css\dropzone.css" />
+    <Content Include="Content\css\DT_bootstrap.css" />
+    <Content Include="Content\css\email.css" />
+    <Content Include="Content\css\error.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\fullcalendar.css" />
+    <Content Include="Content\css\glyphicons.css" />
+    <Content Include="Content\css\grey.css" />
+    <Content Include="Content\css\halflings.css" />
+    <Content Include="Content\css\inbox.css" />
+    <Content Include="Content\css\invoice.css" />
+    <Content Include="Content\css\jquery-ui-1.10.1.custom.min.css" />
+    <Content Include="Content\css\jquery.easy-pie-chart.css" />
+    <Content Include="Content\css\jquery.fancybox.css" />
+    <Content Include="Content\css\jquery.fileupload-ui.css" />
+    <Content Include="Content\css\jquery.gritter.css" />
+    <Content Include="Content\css\jquery.nestable.css" />
+    <Content Include="Content\css\jquery.tagsinput.css" />
+    <Content Include="Content\css\jquery.ui.slider.css" />
+    <Content Include="Content\css\jqvmap.css" />
+    <Content Include="Content\css\light.css" />
+    <Content Include="Content\css\lock.css" />
+    <Content Include="Content\css\login-soft.css" />
+    <Content Include="Content\css\login.css" />
+    <Content Include="Content\css\multi-select-metro.css" />
+    <Content Include="Content\css\news.css" />
+    <Content Include="Content\css\pricing-tables.css" />
+    <Content Include="Content\css\print.css" />
+    <Content Include="Content\css\profile.css" />
+    <Content Include="Content\css\promo.css" />
+    <Content Include="Content\css\purple.css" />
+    <Content Include="Content\css\search.css" />
+    <Content Include="Content\css\select2_metro.css" />
+    <Content Include="Content\css\style-metro.css" />
+    <Content Include="Content\css\style-non-responsive.css" />
+    <Content Include="Content\css\style-responsive.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\timeline.css" />
+    <Content Include="Content\css\timepicker.css" />
+    <Content Include="Content\css\uniform.default.css" />
+    <Content Include="Content\image\1.jpg" />
+    <Content Include="Content\image\10.jpg" />
+    <Content Include="Content\image\11.jpg" />
+    <Content Include="Content\image\2.jpg" />
+    <Content Include="Content\image\3.jpg" />
+    <Content Include="Content\image\4.jpg" />
+    <Content Include="Content\image\5.jpg" />
+    <Content Include="Content\image\6.jpg" />
+    <Content Include="Content\image\7.jpg" />
+    <Content Include="Content\image\8.jpg" />
+    <Content Include="Content\image\9.jpg" />
+    <Content Include="Content\image\alpha.png" />
+    <Content Include="Content\image\amazon.png" />
+    <Content Include="Content\image\animated-overlay.gif" />
+    <Content Include="Content\image\avatar.png" />
+    <Content Include="Content\image\avatar1.jpg" />
+    <Content Include="Content\image\avatar1_small.jpg" />
+    <Content Include="Content\image\avatar2.jpg" />
+    <Content Include="Content\image\avatar3.jpg" />
+    <Content Include="Content\image\behance.png" />
+    <Content Include="Content\image\bg-input-focus.png" />
+    <Content Include="Content\image\bg-input.png" />
+    <Content Include="Content\image\bg-opacity.png" />
+    <Content Include="Content\image\bg-white-lock.png" />
+    <Content Include="Content\image\bg\1.jpg" />
+    <Content Include="Content\image\bg\2.jpg" />
+    <Content Include="Content\image\bg\3.jpg" />
+    <Content Include="Content\image\bg\4.jpg" />
+    <Content Include="Content\image\blank.gif" />
+    <Content Include="Content\image\blogger.png" />
+    <Content Include="Content\image\bstree-halflings.png" />
+    <Content Include="Content\image\chosen-sprite.png" />
+    <Content Include="Content\image\datatable-row-openclose.png" />
+    <Content Include="Content\image\deviantart.png" />
+    <Content Include="Content\image\dribbble.png" />
+    <Content Include="Content\image\dropbox.png" />
+    <Content Include="Content\image\earth.jpg" />
+    <Content Include="Content\image\evernote.png" />
+    <Content Include="Content\image\facebook.png" />
+    <Content Include="Content\image\fancybox_loading.gif" />
+    <Content Include="Content\image\fancybox_overlay.png" />
+    <Content Include="Content\image\fancybox_sprite.png" />
+    <Content Include="Content\image\favicon.ico" />
+    <Content Include="Content\image\fontawesome-webfont.svg" />
+    <Content Include="Content\image\forrst.png" />
+    <Content Include="Content\image\github.png" />
+    <Content Include="Content\image\glyphicons-halflings-white.png" />
+    <Content Include="Content\image\glyphicons-halflings.png" />
+    <Content Include="Content\image\glyphicons-regular.svg" />
+    <Content Include="Content\image\glyphicons-white.png" />
+    <Content Include="Content\image\glyphicons-white.svg" />
+    <Content Include="Content\image\glyphicons.png" />
+    <Content Include="Content\image\glyphiconshalflings-regular.svg" />
+    <Content Include="Content\image\glyphicons_halflings-white.png" />
+    <Content Include="Content\image\glyphicons_halflings-white.svg" />
+    <Content Include="Content\image\glyphicons_halflings.png" />
+    <Content Include="Content\image\glyphicons_halflings.svg" />
+    <Content Include="Content\image\googleplus.png" />
+    <Content Include="Content\image\gritter-light.png" />
+    <Content Include="Content\image\gritter.png" />
+    <Content Include="Content\image\hor-menu-search-close-white.png" />
+    <Content Include="Content\image\hor-menu-search-close.png" />
+    <Content Include="Content\image\hor-menu-search.png" />
+    <Content Include="Content\image\hue.png" />
+    <Content Include="Content\image\icon-color-close.png" />
+    <Content Include="Content\image\icon-color.png" />
+    <Content Include="Content\image\icon-img-down.png" />
+    <Content Include="Content\image\icon-img-up.png" />
+    <Content Include="Content\image\ie-spacer.gif" />
+    <Content Include="Content\image\image1.jpg" />
+    <Content Include="Content\image\image2.jpg" />
+    <Content Include="Content\image\image3.jpg" />
+    <Content Include="Content\image\image4.jpg" />
+    <Content Include="Content\image\image5.jpg" />
+    <Content Include="Content\image\img1.png" />
+    <Content Include="Content\image\img1_2.png" />
+    <Content Include="Content\image\img2.png" />
+    <Content Include="Content\image\img3.png" />
+    <Content Include="Content\image\img4.png" />
+    <Content Include="Content\image\inbox-nav-arrow-blue.png" />
+    <Content Include="Content\image\instagram.png" />
+    <Content Include="Content\image\iphone.png" />
+    <Content Include="Content\image\item_img.jpg" />
+    <Content Include="Content\image\item_img1.jpg" />
+    <Content Include="Content\image\jolicloud.png" />
+    <Content Include="Content\image\KwPYo.jpg" />
+    <Content Include="Content\image\last-fm.png" />
+    <Content Include="Content\image\linkedin.png" />
+    <Content Include="Content\image\loading.gif" />
+    <Content Include="Content\image\logo-big.png" />
+    <Content Include="Content\image\logo.png" />
+    <Content Include="Content\image\logo_azteca.jpg" />
+    <Content Include="Content\image\logo_conquer.jpg" />
+    <Content Include="Content\image\logo_metronic.jpg" />
+    <Content Include="Content\image\menu-toggler.png" />
+    <Content Include="Content\image\overlay-icon.png" />
+    <Content Include="Content\image\photo1.jpg" />
+    <Content Include="Content\image\photo2.jpg" />
+    <Content Include="Content\image\photo3.jpg" />
+    <Content Include="Content\image\photo4.jpg" />
+    <Content Include="Content\image\photo5.jpg" />
+    <Content Include="Content\image\photo6.jpg" />
+    <Content Include="Content\image\picasa.png" />
+    <Content Include="Content\image\pintrest.png" />
+    <Content Include="Content\image\portlet-collapse-icon-white.png" />
+    <Content Include="Content\image\portlet-collapse-icon.png" />
+    <Content Include="Content\image\portlet-config-icon-white.png" />
+    <Content Include="Content\image\portlet-config-icon.png" />
+    <Content Include="Content\image\portlet-expand-icon-white.png" />
+    <Content Include="Content\image\portlet-expand-icon.png" />
+    <Content Include="Content\image\portlet-reload-icon-white.png" />
+    <Content Include="Content\image\portlet-reload-icon.png" />
+    <Content Include="Content\image\portlet-remove-icon-white.png" />
+    <Content Include="Content\image\portlet-remove-icon.png" />
+    <Content Include="Content\image\preview_02.png" />
+    <Content Include="Content\image\preview_03.png" />
+    <Content Include="Content\image\preview_04.png" />
+    <Content Include="Content\image\preview_05.png" />
+    <Content Include="Content\image\preview_06.png" />
+    <Content Include="Content\image\preview_07.png" />
+    <Content Include="Content\image\preview_08.png" />
+    <Content Include="Content\image\preview_09.png" />
+    <Content Include="Content\image\preview_10.png" />
+    <Content Include="Content\image\preview_11.png" />
+    <Content Include="Content\image\preview_12.png" />
+    <Content Include="Content\image\preview_13.png" />
+    <Content Include="Content\image\preview_14.png" />
+    <Content Include="Content\image\preview_15.png" />
+    <Content Include="Content\image\preview_16.png" />
+    <Content Include="Content\image\preview_17.png" />
+    <Content Include="Content\image\profile-img.png" />
+    <Content Include="Content\image\profile.jpg" />
+    <Content Include="Content\image\progressbar.gif" />
+    <Content Include="Content\image\remove-icon-small.png" />
+    <Content Include="Content\image\rss.png" />
+    <Content Include="Content\image\saturation.png" />
+    <Content Include="Content\image\search-icon.png" />
+    <Content Include="Content\image\select2-spinner.gif" />
+    <Content Include="Content\image\select2.png" />
+    <Content Include="Content\image\select2x2.png" />
+    <Content Include="Content\image\sidebar-menu-arrow.png" />
+    <Content Include="Content\image\sidebar-search-close.png" />
+    <Content Include="Content\image\sidebar-toggler.jpg" />
+    <Content Include="Content\image\skype.png" />
+    <Content Include="Content\image\social_facebook.png" />
+    <Content Include="Content\image\social_googleplus.png" />
+    <Content Include="Content\image\social_linkedin.png" />
+    <Content Include="Content\image\social_rss.png" />
+    <Content Include="Content\image\social_twitter.png" />
+    <Content Include="Content\image\sort_asc.png" />
+    <Content Include="Content\image\sort_asc_disabled.png" />
+    <Content Include="Content\image\sort_both.png" />
+    <Content Include="Content\image\sort_desc.png" />
+    <Content Include="Content\image\sort_desc_disabled.png" />
+    <Content Include="Content\image\spotify.png" />
+    <Content Include="Content\image\sprite.png" />
+    <Content Include="Content\image\spritemap%402x.png" />
+    <Content Include="Content\image\spritemap.png" />
+    <Content Include="Content\image\stumbleupon.png" />
+    <Content Include="Content\image\switch.png" />
+    <Content Include="Content\image\syncfusion-icons-white.png" />
+    <Content Include="Content\image\syncfusion-icons.png" />
+    <Content Include="Content\image\tumblr.png" />
+    <Content Include="Content\image\twitter.png" />
+    <Content Include="Content\image\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\image\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\image\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="Content\image\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\image\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\image\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\image\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\image\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\image\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\image\ui-icons_222222_256x240.png" />
+    <Content Include="Content\image\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\image\ui-icons_888888_256x240.png" />
+    <Content Include="Content\image\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\image\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\image\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\image\vimeo.png" />
+    <Content Include="Content\image\vk.png" />
+    <Content Include="Content\image\walmart.png" />
+    <Content Include="Content\image\wordpress.png" />
+    <Content Include="Content\image\xing.png" />
+    <Content Include="Content\image\yahoo.png" />
+    <Content Include="Content\image\youtube.png" />
+    <Content Include="Scripts\additional-methods.min.js" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\bootstrap-colorpicker.js" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-fileupload.js" />
+    <Content Include="Scripts\bootstrap-modal.js" />
+    <Content Include="Scripts\bootstrap-modalmanager.js" />
+    <Content Include="Scripts\bootstrap-rtl.min.js" />
+    <Content Include="Scripts\bootstrap-tag.js" />
+    <Content Include="Scripts\bootstrap-timepicker.js" />
+    <Content Include="Scripts\bootstrap-tree.js" />
+    <Content Include="Scripts\bootstrap-wysihtml5.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\breakpoints.js" />
+    <Content Include="Scripts\breakpoints.min.js" />
+    <Content Include="Scripts\calendar.js" />
+    <Content Include="Scripts\canvas-to-blob.min.js" />
+    <Content Include="Scripts\charts.js" />
+    <Content Include="Scripts\chosen.jquery.min.js" />
+    <Content Include="Scripts\ckeditor.js" />
+    <Content Include="Scripts\clockface.js" />
+    <Content Include="Scripts\coming-soon.js" />
+    <Content Include="Scripts\contact-us.js" />
+    <Content Include="Scripts\date.js" />
+    <Content Include="Scripts\daterangepicker.js" />
+    <Content Include="Scripts\dropzone.js" />
+    <Content Include="Scripts\DT_bootstrap.js" />
+    <Content Include="Scripts\excanvas.js" />
+    <Content Include="Scripts\excanvas.min.js" />
+    <Content Include="Scripts\form-components.js" />
+    <Content Include="Scripts\form-fileupload.js" />
+    <Content Include="Scripts\form-samples.js" />
+    <Content Include="Scripts\form-validation.js" />
+    <Content Include="Scripts\form-wizard.js" />
+    <Content Include="Scripts\fullcalendar.min.js" />
+    <Content Include="Scripts\gallery.js" />
+    <Content Include="Scripts\gmaps.js" />
+    <Content Include="Scripts\inbox.js" />
+    <Content Include="Scripts\index.js" />
+    <Content Include="Scripts\jquery-1.10.1.min.js" />
+    <Content Include="Scripts\jquery-1.8.3.min.js" />
+    <Content Include="Scripts\jquery-migrate-1.2.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.10.1.custom.min.js" />
+    <Content Include="Scripts\jquery.backstretch.min.js" />
+    <Content Include="Scripts\jquery.blockui.min.js" />
+    <Content Include="Scripts\jquery.bootpag.min.js" />
+    <Content Include="Scripts\jquery.bootstrap.wizard.min.js" />
+    <Content Include="Scripts\jquery.cookie.min.js" />
+    <Content Include="Scripts\jquery.countdown.js" />
+    <Content Include="Scripts\jquery.dataTables.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
+    <Content Include="Scripts\jquery.easy-pie-chart.js" />
+    <Content Include="Scripts\jquery.fancybox.pack.js" />
+    <Content Include="Scripts\jquery.fileupload-fp.js" />
+    <Content Include="Scripts\jquery.fileupload-ui.js" />
+    <Content Include="Scripts\jquery.fileupload.js" />
+    <Content Include="Scripts\jquery.flot.crosshair.js" />
+    <Content Include="Scripts\jquery.flot.js" />
+    <Content Include="Scripts\jquery.flot.pie.js" />
+    <Content Include="Scripts\jquery.flot.resize.js" />
+    <Content Include="Scripts\jquery.flot.stack.js" />
+    <Content Include="Scripts\jquery.gritter.js" />
+    <Content Include="Scripts\jquery.iframe-transport.js" />
+    <Content Include="Scripts\jquery.input-ip-address-control-1.0.min.js" />
+    <Content Include="Scripts\jquery.inputmask.bundle.min.js" />
+    <Content Include="Scripts\jquery.knob.js" />
+    <Content Include="Scripts\jquery.multi-select.js" />
+    <Content Include="Scripts\jquery.nestable.js" />
+    <Content Include="Scripts\jquery.pulsate.min.js" />
+    <Content Include="Scripts\jquery.slimscroll.min.js" />
+    <Content Include="Scripts\jquery.sparkline.min.js" />
+    <Content Include="Scripts\jquery.tagsinput.min.js" />
+    <Content Include="Scripts\jquery.toggle.buttons.js" />
+    <Content Include="Scripts\jquery.ui.widget.js" />
+    <Content Include="Scripts\jquery.uniform.min.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.vmap.europe.js" />
+    <Content Include="Scripts\jquery.vmap.germany.js" />
+    <Content Include="Scripts\jquery.vmap.js" />
+    <Content Include="Scripts\jquery.vmap.russia.js" />
+    <Content Include="Scripts\jquery.vmap.sampledata.js" />
+    <Content Include="Scripts\jquery.vmap.usa.js" />
+    <Content Include="Scripts\jquery.vmap.world.js" />
+    <Content Include="Scripts\jquery.xdr-transport.js" />
+    <Content Include="Scripts\load-image.min.js" />
+    <Content Include="Scripts\lock.js" />
+    <Content Include="Scripts\login-soft.js" />
+    <Content Include="Scripts\login.js" />
+    <Content Include="Scripts\maps-google.js" />
+    <Content Include="Scripts\maps-vector.js" />
+    <Content Include="Scripts\portlet-draggable.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\search.js" />
+    <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\table-advanced.js" />
+    <Content Include="Scripts\table-editable.js" />
+    <Content Include="Scripts\table-managed.js" />
+    <Content Include="Scripts\tmpl.min.js" />
+    <Content Include="Scripts\ui-general.js" />
+    <Content Include="Scripts\ui-jqueryui.js" />
+    <Content Include="Scripts\ui-modals.js" />
+    <Content Include="Scripts\ui-nestable.js" />
+    <Content Include="Scripts\ui-sliders.js" />
+    <Content Include="Scripts\ui-tree.js" />
+    <Content Include="Scripts\wysihtml5-0.3.0.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -146,6 +510,25 @@
       <Project>{9a16bdb8-da56-4239-9a38-7e3c286f44bc}</Project>
       <Name>Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Login\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\image\css" />
+    <Content Include="Content\image\fontawesome-webfont.eot" />
+    <Content Include="Content\image\fontawesome-webfont.ttf" />
+    <Content Include="Content\image\fontawesome-webfont.woff" />
+    <Content Include="Content\image\glyphicons-regular.eot" />
+    <Content Include="Content\image\glyphicons-regular.ttf" />
+    <Content Include="Content\image\glyphicons-regular.woff" />
+    <Content Include="Content\image\glyphiconshalflings-regular.eot" />
+    <Content Include="Content\image\glyphiconshalflings-regular.ttf" />
+    <Content Include="Content\image\glyphiconshalflings-regular.woff" />
+    <Content Include="Content\image\js" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
