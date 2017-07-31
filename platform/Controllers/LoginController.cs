@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace platform.Controllers
 {
+  [Authorize]
   public class LoginController : Controller
   {
 
@@ -18,6 +19,8 @@ namespace platform.Controllers
     {
       this._userService = userService;
     }
+
+    [AllowAnonymous]
     // GET: Login
     public ActionResult Index()
     {
@@ -25,6 +28,7 @@ namespace platform.Controllers
     }
 
     [HttpPost]
+    [AllowAnonymous]
     public string Index(User user)
     {
       User account = _userService.CheckLogin(user.Mobile, user.Password);
@@ -34,6 +38,13 @@ namespace platform.Controllers
         Status = true,
         Code = ResultCode.Success,
         Result = account
+      };
+      if(account == null)
+      {
+        result.Message = "登录失败";
+        result.Status = false;
+        result.Code = ResultCode.Fail;
+        result = null;
       };
       return JsonHelper.Instance.Serialize(result);
     }

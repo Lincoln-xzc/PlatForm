@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace platform.Controllers
 {
-  public class UserController : Controller
+  public class UserController : BaseController
   {
     //private readonly IUserService _userServcie;
 

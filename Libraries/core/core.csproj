@@ -73,6 +73,7 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="IPagedList.cs" />
     <Compile Include="JsonHelper.cs" />
+    <Compile Include="Log\Logger.cs" />
     <Compile Include="MD5Encryption.cs" />
     <Compile Include="PagedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

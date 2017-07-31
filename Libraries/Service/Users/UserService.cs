@@ -10,6 +10,7 @@ using Core.Data;
 using Data;
 using Core.Cache;
 using System.Web;
+using System.Web.Security;
 
 namespace Service.Users
 {
@@ -115,7 +116,7 @@ namespace Service.Users
         IpAddress = HttpContext.Current.Request.UserHostAddress
       };
       new ObjCacheProvider<UserAuthSession>().Create(currentSession.Token, currentSession, DateTime.Now.AddDays(2));
-
+      FormsAuthentication.SetAuthCookie(currentSession.Token, true);
       return user;
     }
   }

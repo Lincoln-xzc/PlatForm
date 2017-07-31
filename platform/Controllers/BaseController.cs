@@ -19,45 +19,45 @@ namespace platform.Controllers
     {
       base.OnActionExecuting(filterContext);
 
-      var token = "";
-      var Request = filterContext.HttpContext.Request;
+      //var token = "";
+      //var Request = filterContext.HttpContext.Request;
 
-      if(Request.QueryString[Token] != null)
-      {
-        token = Request.QueryString[Token];
-        var cookie = new HttpCookie(Token, token)
-        {
-          Expires = DateTime.Now.AddDays(2)
-        };
-        filterContext.HttpContext.Response.Cookies.Add(cookie);
-      }else if(Request.Cookies[Token] != null)
-      {
-        token = Request.Cookies[Token].Value;
-      }
+      //if(Request.QueryString[Token] != null)
+      //{
+      //  token = Request.QueryString[Token];
+      //  var cookie = new HttpCookie(Token, token)
+      //  {
+      //    Expires = DateTime.Now.AddDays(2)
+      //  };
+      //  filterContext.HttpContext.Response.Cookies.Add(cookie);
+      //}else if(Request.Cookies[Token] != null)
+      //{
+      //  token = Request.Cookies[Token].Value;
+      //}
 
-      if (string.IsNullOrEmpty(token))
-      {
-        filterContext.Result = LoginResult("");
-        return;
-      }
-      else
-      {
-        ObjCacheProvider<UserAuthSession> objCache = new ObjCacheProvider<UserAuthSession>();
-        if(objCache.GetCache(token) != null)
-        {
-          ControllerName = Request.RequestContext.RouteData.Values["controller"].ToString().ToLower();
-          ActionName = filterContext.ActionDescriptor.ActionName.ToLower();
+      //if (string.IsNullOrEmpty(token))
+      //{
+      //  filterContext.Result = LoginResult("");
+      //  return;
+      //}
+      //else
+      //{
+      //  ObjCacheProvider<UserAuthSession> objCache = new ObjCacheProvider<UserAuthSession>();
+      //  if(objCache.GetCache(token) != null)
+      //  {
+      //    ControllerName = Request.RequestContext.RouteData.Values["controller"].ToString().ToLower();
+      //    ActionName = filterContext.ActionDescriptor.ActionName.ToLower();
 
-          var function = this.GetType().GetMethods().FirstOrDefault(u => u.Name.ToLower() == ActionName);
-          if (function == null)
-            throw new Exception("未能找到Action");
-        }
-        else
-        {
-          filterContext.Result = LoginResult("");
-          return;
-        }
-      }
+      //    var function = this.GetType().GetMethods().FirstOrDefault(u => u.Name.ToLower() == ActionName);
+      //    if (function == null)
+      //      throw new Exception("未能找到Action");
+      //  }
+      //  else
+      //  {
+      //    filterContext.Result = LoginResult("");
+      //    return;
+      //  }
+      //}
 
     }
     public virtual ActionResult LoginResult(string username)

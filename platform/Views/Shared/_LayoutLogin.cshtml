@@ -23,8 +23,11 @@
   <link href="~/Content/css/login.css" rel="stylesheet" type="text/css" />
 
   <!-- END PAGE LEVEL STYLES -->
-  @Scripts.Render("~/bundles/jquery")
+ 
   <link rel="shortcut icon" href="~/Content/image/favicon.ico" />
+
+  @Scripts.Render("~/bundles/jquery")
+  @RenderSection("styles", required:false)
   @RenderSection("scripts_header", required:false)
 </head>
 
@@ -92,8 +95,6 @@
   <script>
 
 		jQuery(document).ready(function() {
-
-		  App.init();
 
 		  Login.init();
 
